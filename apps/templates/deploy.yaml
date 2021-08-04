@@ -16,7 +16,6 @@ spec:
       containers:
       - name: my-nginx
         image: nginx
-
 ---
 apiVersion: v1
 kind: Service
@@ -31,12 +30,8 @@ spec:
   ports:
   - port: 8000
     targetPort: 80
-<<<<<<< HEAD
     nodePort: 32588
-
-
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -55,8 +50,6 @@ spec:
       containers:
       - name: my-ngx2
         image: nginx
-
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -76,8 +69,6 @@ spec:
       containers:
       - name: my-ngx3
         image: nginx
-
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -98,10 +89,3 @@ spec:
       - name: my-ngx4
         image: nginx
 
-
-
-
-
-=======
-    nodePort: 32506
->>>>>>> 21666429727df670f6f48764e93c883fc1d00f57
