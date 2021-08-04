@@ -31,4 +31,73 @@ spec:
   ports:
   - port: 8000
     targetPort: 80
-    nodePort: 32500
+    nodePort: 32588
+
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-ngx2
+spec:
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: my-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: my-ngx2
+    spec:
+      containers:
+      - name: my-ngx2
+        image: nginx
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-ngx3
+spec:
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: my-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: my-ngx3
+    spec:
+      containers:
+      - name: my-ngx3
+        image: nginx
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-ngx4
+spec:
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: my-nginx
+  replicas: 9
+  template:
+    metadata:
+      labels:
+        app: my-ngx4
+    spec:
+      containers:
+      - name: my-ngx4
+        image: nginx
+
+
+
+
+
