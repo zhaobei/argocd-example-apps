@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: my-nginx
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -31,6 +31,7 @@ spec:
   ports:
   - port: 8000
     targetPort: 80
+<<<<<<< HEAD
     nodePort: 32588
 
 
@@ -101,3 +102,6 @@ spec:
 
 
 
+=======
+    nodePort: 32506
+>>>>>>> 21666429727df670f6f48764e93c883fc1d00f57
