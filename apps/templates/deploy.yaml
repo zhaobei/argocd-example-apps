@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-nginx
+  name: my-nginx-{{ .values.name }}
 spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: my-nginx
-  replicas: 1
+      app: my-nginx-{{ .values.name }}
+  replicas: 8
   template:
     metadata:
       labels:
-        app: my-nginx
+        app: my-nginx-{{ .values.name }}
     spec:
       containers:
-      - name: my-nginx
+      - name: my-nginx-{{ .values.name }}
         image: nginx
 ---
 apiVersion: v1
@@ -26,68 +26,8 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: my-nginx
+    app: my-nginx-{{ .values.name }}
   ports:
   - port: 8000
     targetPort: 80
-    nodePort: 32588
 
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-nginxa
-spec:
-  revisionHistoryLimit: 3
-  selector:
-    matchLabels:
-      app: my-nginxa
-  replicas: 7
-  template:
-    metadata:
-      labels:
-        app: my-nginxa
-    spec:
-      containers:
-      - name: my-nginxa
-        image: nginx
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-nginxb
-spec:
-  revisionHistoryLimit: 3
-  selector:
-    matchLabels:
-      app: my-nginxb
-  replicas: 7
-  template:
-    metadata:
-      labels:
-        app: my-nginxb
-    spec:
-      containers:
-      - name: my-nginxb
-        image: nginx
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-nginxc
-spec:
-  revisionHistoryLimit: 3
-  selector:
-    matchLabels:
-      app: my-nginxc
-  replicas: 9
-  template:
-    metadata:
-      labels:
-        app: my-nginxc
-    spec:
-      containers:
-      - name: my-nginxc
-        image: nginx
